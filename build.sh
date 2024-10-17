@@ -1,10 +1,10 @@
 #!/bin/bash
 
-cc -o ./bin/buildjust buildjust.c
+cc -o ./bin/example example.c
 
 if [ $? -eq 0 ]; then
     clear
-    ./bin/buildjust
+    ./bin/example
 else
     echo "Build failed"
 fi

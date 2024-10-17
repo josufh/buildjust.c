@@ -19,11 +19,3 @@ int run_command();
 int run_command() {
     return system("ls -a");
 }
-
-
-String hello = "cc";
-
-int main() {
-    run_command(hello);
-    return 0;
-}
