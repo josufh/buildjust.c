@@ -1,6 +1,6 @@
 #include "buildjust.c"
 
 int main() {
-    run_command();
+    REBUILD_YOURSELF();
     return 0;
 }
