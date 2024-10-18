@@ -2,6 +2,5 @@
 
 int main() {
     run_command();
-
     return 0;
 }

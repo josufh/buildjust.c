@@ -9,7 +9,7 @@ fi
 cc -o ./"$OUTPUT_DIR/example" example.c
 
 if [ $? -eq 0 ]; then
-    clear
+    #clear
     ./bin/example
 else
     echo "Build failed"
