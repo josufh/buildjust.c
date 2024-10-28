@@ -88,7 +88,7 @@ int check_checksum(const char* source_file, const char* checksum_file) {
         return 0;
     } else {
         printf("The file has been modified.\nRebuilding Itself.\n");
-        save_checksum(checksum_file, new_checksum);
+        //save_checksum(checksum_file, new_checksum);
         return 1;
     }
 }
@@ -100,7 +100,14 @@ int RUN_COMMAND(CString* command, String* output, size_t output_size) {}
 int run_command() {}
 
 void REBUILD_YOURSELF() {
-    check_checksum(SOURCE_FILE, CHECKSUM_FILE);
+    if (check_checksum(SOURCE_FILE, CHECKSUM_FILE)) {
+	printf("File has changed\n");
+	printf("Rebuilding...\n");
+	
+	system("gcc -o ./bin/example ");
+    } else {
+	printf("File hasn't changed\n");
+    }
     // if different create new
     //   compile
     //     get compile settings
