@@ -21,7 +21,7 @@ typedef const char* CString;
 int RUN_COMMAND(CString* command, String* output, size_t output_size);
 int run_command();
 
-int REBUILD_YOURSELF();
+void REBUILD_YOURSELF();
 
 #endif // __BUILD_JUST_H__
 
@@ -99,23 +99,16 @@ int RUN_COMMAND(CString* command, String* output, size_t output_size) {}
 
 int run_command() {}
 
-int REBUILD_YOURSELF() {
-    if (check_checksum(SOURCE_FILE, CHECKSUM_FILE)) {
-	printf("File has changed\n");
-	printf("Rebuilding...\n");
+void REBUILD_YOURSELF() {
+  if (check_checksum(SOURCE_FILE, CHECKSUM_FILE)) {
+	  printf("File has changed\n");
+	  printf("Rebuilding...\n");
 	
-	system("gcc -o ./bin/example example.c");
-  system("bin/example");
-  return 1;
-    } else {
-	printf("File hasn't changed\n");
-  return 0;
-    }
-    // if different create new
-    //   compile
-    //     get compile settings
-    //     compiler, flags, argumetns, output, source...
-    //   run new
-    // if not
-    //   run old
-}
+	  system("gcc -o ./bin/example example.c");
+    system("bin/example");
+    exit(0);
+
+  } else {
+	  printf("File hasn't changed\n");
+  }
+} 
