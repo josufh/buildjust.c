@@ -1,9 +1,11 @@
 #include "buildjust.c"
 
 int main() {
-    REBUILD_YOURSELF();
+  if (REBUILD_YOURSELF()) {
+    return 0;
+  }
 
-    printf("Hello! I REEEcompiled myself!\n");
+    printf("Hello! I REEEbuuuuilllderedddd myshelf!\n");
 
     return 0;
 }
