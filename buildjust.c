@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stddef.h>
 #include <assert.h>
 #include <sched.h>
@@ -21,7 +22,7 @@ typedef const char* CString;
 int RUN_COMMAND(CString* command, String* output, size_t output_size);
 int run_command();
 
-void REBUILD_YOURSELF();
+void REBUILD_YOURSELF(int argc, char *argv[]);
 
 #endif // __BUILD_JUST_H__
 
@@ -78,16 +79,12 @@ void read_checksum(const char* checksum_filename, uint32_t* checksum) {
 int check_checksum(const char* source_file, const char* checksum_file) {
   init_crc32_table();
   uint32_t new_checksum = crc32(source_file);
-  printf("New checksum: %u\n", new_checksum);
 
   uint32_t old_checksum;
   read_checksum(checksum_file, &old_checksum);
-  printf("Old checksum: %u\n", old_checksum);
   if (new_checksum == old_checksum) {
-    printf("File has not changed.\nContinuie execution.\n");
     return 0;
   } else {
-    printf("The file has been modified.\nRebuilding Itself.\n");
     save_checksum(checksum_file, new_checksum);
     return 1;
   }
@@ -99,16 +96,15 @@ int RUN_COMMAND(CString* command, String* output, size_t output_size) {}
 
 int run_command() {}
 
-void REBUILD_YOURSELF() {
+void REBUILD_YOURSELF(int argc, char *argv[]) {
+  if (argc > 1)
+    if (0 == strcmp(argv[1], "nocheck")) return;
+
   if (check_checksum(SOURCE_FILE, CHECKSUM_FILE)) {
-	  printf("File has changed\n");
-	  printf("Rebuilding...\n");
 	
 	  system("gcc -o ./bin/example example.c");
-    system("bin/example");
+    system("bin/example nocheck");
     exit(0);
 
-  } else {
-	  printf("File hasn't changed\n");
-  }
+  } 
 } 

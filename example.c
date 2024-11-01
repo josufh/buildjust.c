@@ -1,9 +1,8 @@
 #include "buildjust.c"
 
-int main() {
-  REBUILD_YOURSELF();  
+int main(int argc, char* argv[]) {
+  REBUILD_YOURSELF(argc, argv);  
 
-  printf("Hello world!\n");
-  printf("Second hello haha\n");
+  printf("Hello world 3!\n");
   return 0;
 }
