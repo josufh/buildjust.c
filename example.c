@@ -1,9 +1,9 @@
 #include "buildjust.c"
 
 int main() {
- REBUILD_YOURSELF();  
+  REBUILD_YOURSELF();  
 
-    printf("I REEEbuuuuilllderedddd myshelf!\n");
-
-    return 0;
+  printf("Hello world!\n");
+  printf("Second hello haha\n");
+  return 0;
 }
